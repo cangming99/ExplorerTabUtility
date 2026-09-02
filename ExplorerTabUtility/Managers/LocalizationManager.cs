@@ -144,9 +144,6 @@ public static class LocalizationManager
         return args is { Length: > 0 } ? string.Format(CurrentCulture, value, args) : value;
     }
 
-    /// <summary>Indexer alias for <see cref="GetString(string)"/>.</summary>
-    public static string this[string key] => GetString(key);
-
     private static bool ApplyAndPersist(string language)
     {
         SettingsManager.Language = language;
