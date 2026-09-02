@@ -14,6 +14,10 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        // Apply the persisted language before anything is shown, so the very first frame
+        // (including the "already running" prompt) is localized right away.
+        LocalizationManager.Initialize();
+
         _mutex = new Mutex(true, Constants.MutexId, out var createdNew);
 
         if (createdNew)
@@ -21,17 +25,14 @@ public partial class App : Application
             base.OnStartup(e);
             SetupTooltipBehavior();
 
-            // Apply the persisted language before any UI is shown, so the first frame is localized.
-            LocalizationManager.Initialize();
-
             _ = new MainWindow();
             return;
         }
 
-        CustomMessageBox.Show("""
-                              Another instance is already running.
-                              Check in System Tray Icons.
-                              """, Constants.AppName, icon: MessageBoxImage.Information);
+        CustomMessageBox.Show(
+            LocalizationManager.GetString("App.AnotherInstanceRunning"),
+            Constants.AppName,
+            icon: MessageBoxImage.Information);
         Shutdown();
     }
 

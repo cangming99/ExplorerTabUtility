@@ -3,5 +3,10 @@
   "Common.No": "否",
   "Common.OK": "确定",
   "Common.Cancel": "取消",
-  "App.VisibilityHotkeyHint": "你可以按 {0} 再次显示应用。"
+  "App.AnotherInstanceRunning": "应用已在运行。\n请在系统托盘图标中查看。",
+  "App.VisibilityHotkeyHint": "你可以按 {0} 再次显示应用。",
+  "TabSearch.ClearHistoryConfirm": "确定要清空已关闭窗口的历史记录吗？",
+  "TabSearch.ClearHistoryTitle": "确认清空历史记录",
+  "Explorer.RestoreWindowsPrompt": "是否恢复之前打开的窗口？",
+  "Settings.CannotHideTray": "未配置可切换显隐的热键时，无法隐藏托盘图标。"
 }

@@ -201,8 +201,8 @@ public partial class MainWindow : Window
         if (isChecked && showAlert && !SettingsManager.IsTrayIconHidden)
         {
             var message = canToggleVisibility
-                ? $"You can show the app again by pressing {profile!.HotKeys!.HotKeysToString(profile.IsDoubleClick)}"
-                : "Cannot hide tray icon if no hotkey is configured to toggle visibility.";
+                ? LocalizationManager.GetString("App.VisibilityHotkeyHint", profile!.HotKeys!.HotKeysToString(profile.IsDoubleClick))
+                : LocalizationManager.GetString("Settings.CannotHideTray");
 
             CustomMessageBox.Show(this, message, Constants.AppName);
         }

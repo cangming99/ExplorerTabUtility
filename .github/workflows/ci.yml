@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Restore
+        run: dotnet restore ExplorerTabUtility.sln
+
+      - name: Build
+        run: dotnet build ExplorerTabUtility.sln -c Release --no-restore -v minimal
+
+      - name: Test
+        run: dotnet test ExplorerTabUtility.Tests/ExplorerTabUtility.Tests.csproj -c Release --no-build -v minimal

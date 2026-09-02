@@ -3,5 +3,10 @@
   "Common.No": "No",
   "Common.OK": "OK",
   "Common.Cancel": "Cancel",
-  "App.VisibilityHotkeyHint": "You can show the app again by pressing {0}."
+  "App.AnotherInstanceRunning": "Another instance is already running.\nCheck in System Tray Icons.",
+  "App.VisibilityHotkeyHint": "You can show the app again by pressing {0}.",
+  "TabSearch.ClearHistoryConfirm": "Are you sure you want to clear the closed windows history?",
+  "TabSearch.ClearHistoryTitle": "Confirm Clear History",
+  "Explorer.RestoreWindowsPrompt": "Do you want to restore previously opened windows?",
+  "Settings.CannotHideTray": "Cannot hide tray icon if no hotkey is configured to toggle visibility."
 }
