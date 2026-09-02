@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows.Controls;
 using ExplorerTabUtility.UI.Views;
 using ExplorerTabUtility.Helpers;
+using ExplorerTabUtility.Managers;
 
 namespace ExplorerTabUtility;
 
@@ -19,6 +20,9 @@ public partial class App : Application
         {
             base.OnStartup(e);
             SetupTooltipBehavior();
+
+            // Apply the persisted language before any UI is shown, so the first frame is localized.
+            LocalizationManager.Initialize();
 
             _ = new MainWindow();
             return;

@@ -76,6 +76,21 @@ jobs:
           name: ${{ steps.zip_artifacts.outputs.zipName }}
           path: ${{ steps.zip_artifacts.outputs.zipName }}
 
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Run Tests
+        shell: pwsh
+        run: dotnet test ExplorerTabUtility.Tests/ExplorerTabUtility.Tests.csproj -c Release
+
   sign-artifacts:
     needs: build
     runs-on: ubuntu-latest

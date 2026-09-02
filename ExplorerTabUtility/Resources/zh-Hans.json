@@ -1,0 +1,7 @@
+{
+  "Common.Yes": "是",
+  "Common.No": "否",
+  "Common.OK": "确定",
+  "Common.Cancel": "取消",
+  "App.VisibilityHotkeyHint": "你可以按 {0} 再次显示应用。"
+}

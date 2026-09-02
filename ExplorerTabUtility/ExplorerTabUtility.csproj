@@ -57,4 +57,17 @@
         <Resource Include="Icon.ico"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\en.json">
+            <LogicalName>ExplorerTabUtility.Resources.en.json</LogicalName>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Resources\zh-Hans.json">
+            <LogicalName>ExplorerTabUtility.Resources.zh-Hans.json</LogicalName>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="ExplorerTabUtility.Tests"/>
+    </ItemGroup>
+
 </Project>

@@ -1,0 +1,7 @@
+{
+  "Common.Yes": "Yes",
+  "Common.No": "No",
+  "Common.OK": "OK",
+  "Common.Cancel": "Cancel",
+  "App.VisibilityHotkeyHint": "You can show the app again by pressing {0}."
+}

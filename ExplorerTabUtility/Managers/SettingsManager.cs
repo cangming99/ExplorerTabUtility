@@ -11,34 +11,55 @@ namespace ExplorerTabUtility.Managers;
 
 public static class SettingsManager
 {
-    private static readonly AppSettings Settings;
     public static event EventHandler<PropertyChangedEventArgs>? StaticPropertyChanged;
 
-    private static readonly string SettingsFilePath = Path.Combine(
+    /// <summary>
+    /// Path to the settings file. Overridable (used by tests); defaults to the per-user application data folder.
+    /// </summary>
+    internal static string SettingsFilePath { get; set; } = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
         Constants.AppName,
         Constants.SettingsFileName);
 
-    static SettingsManager()
-    {
-        var directory = Path.GetDirectoryName(SettingsFilePath);
-        Directory.CreateDirectory(directory!);
+    private static AppSettings? _settings;
 
-        if (!File.Exists(SettingsFilePath))
+    private static AppSettings Settings
+    {
+        get
         {
-            Settings = new AppSettings();
-            return;
+            if (_settings == null)
+                LoadSettings();
+
+            return _settings!;
         }
+    }
+
+    /// <summary>Clears the cached settings so the next access reloads from disk. Test-only.</summary>
+    internal static void ResetCacheForTests() => _settings = null;
+
+    private static void LoadSettings()
+    {
+        var settings = new AppSettings();
 
         try
         {
-            var json = File.ReadAllText(SettingsFilePath);
-            Settings = JsonSerializer.Deserialize<AppSettings>(json) ?? new AppSettings();
+            var directory = Path.GetDirectoryName(SettingsFilePath);
+            if (!string.IsNullOrEmpty(directory))
+                Directory.CreateDirectory(directory!);
+
+            if (File.Exists(SettingsFilePath))
+            {
+                var json = File.ReadAllText(SettingsFilePath);
+                settings = JsonSerializer.Deserialize<AppSettings>(json) ?? new AppSettings();
+            }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            Settings = new AppSettings();
+            System.Diagnostics.Debug.WriteLine($"Failed to load settings: {ex.Message}");
+            settings = new AppSettings();
         }
+
+        _settings = settings;
     }
 
     private static void NotifyStaticPropertyChanged([CallerMemberName] string propertyName = "")
@@ -130,6 +151,22 @@ public static class SettingsManager
         }
     }
 
+    /// <summary>
+    /// The active language: "auto" (follow the operating system display language) or a canonical
+    /// culture code such as "en" or "zh-Hans". Persisted in the settings file and applied through
+    /// <see cref="LocalizationManager"/>.
+    /// </summary>
+    public static string Language
+    {
+        get => Settings.Language;
+        set
+        {
+            Settings.Language = value;
+            SaveSettings();
+            NotifyStaticPropertyChanged();
+        }
+    }
+
     public static bool IsTrayIconHidden
     {
         get => Settings.IsTrayIconHidden;
@@ -218,6 +255,7 @@ internal class AppSettings
     public bool HaveThemeIssue { get; set; }
     public bool AutoUpdate { get; set; }
     public string HotKeyProfiles { get; set; } = Constants.DefaultHotKeyProfiles;
+    public string Language { get; set; } = LocalizationManager.AutoLanguage;
     public bool SaveClosedWindows { get; set; }
     public bool RestorePreviousWindows { get; set; }
     public WindowRecord[]? ClosedWindows { get; set; }
