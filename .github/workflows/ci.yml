@@ -14,6 +14,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: '17.0'  # Visual Studio 2022
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
@@ -23,7 +28,8 @@ jobs:
         run: dotnet restore ExplorerTabUtility.sln
 
       - name: Build
-        run: dotnet build ExplorerTabUtility.sln -c Release --no-restore -v minimal
+        run: msbuild ExplorerTabUtility.sln /restore:false /p:Configuration=Release /v:minimal
+        shell: pwsh
 
       - name: Test
         run: dotnet test ExplorerTabUtility.Tests/ExplorerTabUtility.Tests.csproj -c Release --no-build -v minimal
