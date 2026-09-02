@@ -18,11 +18,16 @@ public partial class MainWindow : Window
     private readonly HookManager _hookManager;
     private readonly ProfileManager _profileManager;
     private readonly SystemTrayIcon _notifyIconManager;
+    private bool _isRefreshingLanguageOptions;
     private nint _handle;
 
     public MainWindow()
     {
         InitializeComponent();
+
+        // Language selection: keep the dropdown in sync with the active language.
+        LocalizationManager.LanguageChanged += OnLanguageChanged;
+        RefreshLanguageOptions();
 
         // Set initial size from settings
         Width = SettingsManager.FormSize.Width;
@@ -274,6 +279,42 @@ public partial class MainWindow : Window
     {
         MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+    }
+
+    private void OnLanguageChanged(object? _, EventArgs __) => RefreshLanguageOptions();
+
+    private void RefreshLanguageOptions()
+    {
+        if (CbLanguage == null) return; // Not yet initialized.
+
+        _isRefreshingLanguageOptions = true;
+        try
+        {
+            CbLanguage.ItemsSource = new[]
+            {
+                new LanguageOption(LocalizationManager.AutoLanguage, LocalizationManager.GetString("Language.Auto")),
+                new LanguageOption(LocalizationManager.EnglishLanguage, "English"),
+                new LanguageOption(LocalizationManager.SimplifiedChineseLanguage, "简体中文")
+            };
+            CbLanguage.SelectedValue = SettingsManager.Language;
+        }
+        finally
+        {
+            _isRefreshingLanguageOptions = false;
+        }
+    }
+
+    private void CbLanguage_SelectionChanged(object? _, SelectionChangedEventArgs e)
+    {
+        if (_isRefreshingLanguageOptions) return;
+        if (CbLanguage.SelectedValue is string language)
+            LocalizationManager.SetLanguage(language);
+    }
+
+    private sealed class LanguageOption(string value, string displayName)
+    {
+        public string Value { get; } = value;
+        public override string ToString() => displayName;
     }
 
     protected override void OnSourceInitialized(EventArgs e)
