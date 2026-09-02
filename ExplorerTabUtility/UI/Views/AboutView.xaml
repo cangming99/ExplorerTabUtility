@@ -6,6 +6,7 @@
              xmlns:converters="clr-namespace:ExplorerTabUtility.UI.Converters"
              xmlns:views="clr-namespace:ExplorerTabUtility.UI.Views"
              xmlns:models="clr-namespace:ExplorerTabUtility.Models"
+             xmlns:loc="clr-namespace:ExplorerTabUtility.UI.Localization"
              mc:Ignorable="d"
              d:DesignHeight="900" d:DesignWidth="800"
              Loaded="AboutView_Loaded">
@@ -405,7 +406,7 @@
                                        VerticalAlignment="Bottom" />
                         </StackPanel>
 
-                        <TextBlock Text="Enhance your Windows File Explorer experience"
+                        <TextBlock Text="{loc:Loc About.Tagline}"
                                    Foreground="{StaticResource TextSecondaryBrush}"
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,4" />
@@ -450,7 +451,7 @@
                                         <ScaleTransform ScaleX="1" ScaleY="1" />
                                     </TextBlock.RenderTransform>
                                 </TextBlock>
-                                <TextBlock Text="Star on GitHub"
+                                <TextBlock Text="{loc:Loc About.StarOnGitHub}"
                                            FontWeight="SemiBold"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -468,10 +469,10 @@
 
                     <!-- Left Column: Support Options -->
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="Support the Project"
+                        <TextBlock Text="{loc:Loc About.SupportTitle}"
                                    Style="{StaticResource SectionTitleStyle}" />
 
-                        <TextBlock Text="If you find this utility helpful, consider supporting its development through one of these options:"
+                        <TextBlock Text="{loc:Loc About.SupportDescription}"
                                    TextWrapping="Wrap"
                                    Foreground="{StaticResource TextSecondaryBrush}"
                                    Height="42"
@@ -484,7 +485,7 @@
                                 <TextBlock Text="💖"
                                            Style="{StaticResource ColorfulEmojiStyle}"
                                            Foreground="#EA4AAA" />
-                                <TextBlock Text="GitHub Sponsors"
+                                <TextBlock Text="{loc:Loc About.GitHubSponsors}"
                                            FontSize="16"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -497,7 +498,7 @@
                                 <TextBlock Text="🏆"
                                            Style="{StaticResource ColorfulEmojiStyle}"
                                            Foreground="#F96854" />
-                                <TextBlock Text="Patreon"
+                                <TextBlock Text="{loc:Loc About.Patreon}"
                                            FontSize="16"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -510,7 +511,7 @@
                                 <TextBlock Text="☕"
                                            Style="{StaticResource ColorfulEmojiStyle}"
                                            Foreground="#FFDD00" />
-                                <TextBlock Text="Buy Me A Coffee"
+                                <TextBlock Text="{loc:Loc About.BuyMeACoffee}"
                                            FontSize="16"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -523,7 +524,7 @@
                                 <TextBlock Text="💸"
                                            Style="{StaticResource ColorfulEmojiStyle}"
                                            Foreground="#00457C" />
-                                <TextBlock Text="PayPal"
+                                <TextBlock Text="{loc:Loc About.PayPal}"
                                            FontSize="16"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -532,7 +533,7 @@
                         <Border Margin="0,24,0,0" CornerRadius="8"
                                 Style="{StaticResource ProfileCardStyle}">
                             <StackPanel>
-                                <TextBlock Text="Developer"
+                                <TextBlock Text="{loc:Loc About.Developer}"
                                            FontWeight="SemiBold"
                                            FontSize="18"
                                            Foreground="{StaticResource TextPrimaryBrush}"
@@ -591,10 +592,10 @@
 
                     <!-- Right Column: Supporters -->
                     <StackPanel Grid.Column="2">
-                        <TextBlock Text="Current Supporters"
+                        <TextBlock Text="{loc:Loc About.SupportersTitle}"
                                    Style="{StaticResource SectionTitleStyle}" />
 
-                        <TextBlock Text="Thank you to all the amazing people who support this project!"
+                        <TextBlock Text="{loc:Loc About.SupportersDescription}"
                                    TextWrapping="Wrap"
                                    Foreground="{StaticResource TextSecondaryBrush}"
                                    Height="42"
@@ -631,13 +632,13 @@
                                                                                               Opacity="0.5" />
                                                                         </TextBlock.Effect>
                                                                     </TextBlock>
-                                                                    <TextBlock Text="Be the first to support this project!"
+                                                                    <TextBlock Text="{loc:Loc About.NoSupportersTitle}"
                                                                                TextWrapping="Wrap"
                                                                                FontSize="16"
                                                                                FontWeight="Medium"
                                                                                Foreground="{StaticResource TextSecondaryBrush}"
                                                                                HorizontalAlignment="Center" />
-                                                                    <TextBlock Text="Your support helps keep this project alive"
+                                                                    <TextBlock Text="{loc:Loc About.NoSupportersHint}"
                                                                                TextWrapping="Wrap"
                                                                                Margin="0,8,0,0"
                                                                                Foreground="{StaticResource TextSecondaryBrush}"
