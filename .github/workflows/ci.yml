@@ -33,3 +33,17 @@ jobs:
 
       - name: Test
         run: dotnet test ExplorerTabUtility.Tests/ExplorerTabUtility.Tests.csproj -c Release --no-build -v minimal
+
+      - name: Upload artifacts (net9.0-windows)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ExplorerTabUtility-net9.0-windows
+          path: ExplorerTabUtility/bin/Release/net9.0-windows
+          if-no-files-found: error
+
+      - name: Upload artifacts (net481)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ExplorerTabUtility-net481
+          path: ExplorerTabUtility/bin/Release/net481
+          if-no-files-found: error
