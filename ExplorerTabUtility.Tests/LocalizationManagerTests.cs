@@ -191,4 +191,16 @@ public sealed class LocalizationManagerTests : IDisposable
     [Fact]
     public void SupportedLanguages_ContainEnglishAndSimplifiedChinese()
         => Assert.Equal(2, LocalizationManager.SupportedLanguages.Count);
+
+    [Fact]
+    public void AllResourceKeys_ResolveInBothLanguages()
+    {
+        foreach (var language in new[] { LocalizationManager.EnglishLanguage, LocalizationManager.SimplifiedChineseLanguage })
+        {
+            LocalizationManager.SetLanguage(language);
+
+            foreach (var key in LocalizationResourcesTests.LoadEntries(language).Keys)
+                Assert.NotEqual(key, LocalizationManager.GetString(key));
+        }
+    }
 }

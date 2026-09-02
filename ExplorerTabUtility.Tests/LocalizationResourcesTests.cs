@@ -37,7 +37,7 @@ public sealed class LocalizationResourcesTests
         }
     }
 
-    private static Dictionary<string, string> LoadEntries(string language)
+    internal static Dictionary<string, string> LoadEntries(string language)
     {
         var assembly = typeof(LocalizationManager).Assembly;
         var resourceName = $"ExplorerTabUtility.Resources.{language}.json";
