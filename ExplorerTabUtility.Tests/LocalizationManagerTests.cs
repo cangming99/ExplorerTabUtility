@@ -147,6 +147,11 @@ public sealed class LocalizationManagerTests : IDisposable
     [Fact]
     public void SetLanguage_PersistsExplicitChoiceAndAppliesItOnStartup()
     {
+        // The test-class constructor persists "en" via SetLanguage, so start from a truly
+        // empty settings file: the missing-field fallback ("auto") must apply.
+        if (File.Exists(SettingsManager.SettingsFilePath))
+            File.Delete(SettingsManager.SettingsFilePath);
+
         SettingsManager.ResetCacheForTests();
 
         // No settings file yet: the Language field falls back to its default ("auto").
