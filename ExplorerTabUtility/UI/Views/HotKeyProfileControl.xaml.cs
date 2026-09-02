@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using ExplorerTabUtility.Models;
 using ExplorerTabUtility.Helpers;
+using ExplorerTabUtility.Managers;
 using H.Hooks;
 
 namespace ExplorerTabUtility.UI.Views;
@@ -271,6 +272,7 @@ public partial class HotKeyProfileControl : UserControl
 
     private void UpdateAction()
     {
+        var previousAction = _profile.Action;
         var selectedAction = (HotKeyAction)(CbAction.SelectedItem ?? 0);
         _profile.Action = selectedAction;
         switch (selectedAction)
@@ -290,11 +292,20 @@ public partial class HotKeyProfileControl : UserControl
                 CbOpenAsTab.IsEnabled = false;
                 break;
         }
-        
-        // If the name is empty or is an exact match of an action, set it to the hotkey.
-        var isExactMatch = Enum.GetNames(typeof(HotKeyAction)).Any(a => a == TxtName.Text);
-        if (string.IsNullOrWhiteSpace(TxtName.Text) || isExactMatch)
-            TxtName.Text = selectedAction.ToString();
+
+        // Auto-name only when the name is empty or still equals the previous auto-name, so
+        // user-customized names (and names typed in another language) are never overwritten.
+        var isPreviousAutoName = !string.IsNullOrWhiteSpace(TxtName.Text)
+            && TxtName.Text == GetActionDisplayName(previousAction);
+        if (string.IsNullOrWhiteSpace(TxtName.Text) || isPreviousAutoName)
+            TxtName.Text = GetActionDisplayName(selectedAction);
+    }
+
+    private static string GetActionDisplayName(HotKeyAction action)
+    {
+        var key = $"Enum.{nameof(HotKeyAction)}.{action}";
+        var localized = LocalizationManager.GetString(key);
+        return localized == key ? action.ToString() : localized;
     }
 
     private static HotKeyAction[] GetAllowedActions(HotkeyScope scope)
