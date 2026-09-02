@@ -44,6 +44,8 @@
   "Enum.HotKeyAction.SnapUp.Description": "Snap the current window to the top.",
   "Enum.HotKeyAction.TabSearch": "Tab search",
   "Enum.HotKeyAction.TabSearch.Description": "Open tab search popup to find and switch between tabs.",
+  "Enum.HotKeyAction.ToggleEnabled": "Toggle enabled",
+  "Enum.HotKeyAction.ToggleEnabled.Description": "Enable or disable the entire application.",
   "Enum.HotKeyAction.ToggleReuseTabs": "Toggle reuse tabs",
   "Enum.HotKeyAction.ToggleReuseTabs.Description": "Toggle the reuse tabs option.",
   "Enum.HotKeyAction.ToggleVisibility": "Toggle visibility",
@@ -122,5 +124,7 @@
   "Tray.ReuseTabsToolTip": "When enabled, navigates to existing tabs instead of opening duplicate tabs",
   "Tray.Settings": "Settings",
   "Tray.SettingsToolTip": "Open the settings window to configure the application",
+  "Tray.ToggleEnabled": "Enabled",
+  "Tray.ToggleEnabledToolTip": "Master switch: enable or disable the whole application (hooks and new-window tab redirecting)",
   "Tray.WindowHookToolTip": "Toggle automatic redirection of new Explorer windows to tabs"
 }

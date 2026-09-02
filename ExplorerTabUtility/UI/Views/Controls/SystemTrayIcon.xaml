@@ -13,6 +13,15 @@
 
         <tb:TaskbarIcon.ContextMenu>
             <ContextMenu>
+                <!-- Master enabled toggle -->
+                <MenuItem x:Name="ToggleEnabledItem"
+                          Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.ToggleEnabled]}"
+                          StaysOpenOnClick="True"
+                          IsCheckable="True"
+                          IsChecked="{Binding Source={x:Static managers:SettingsManager.IsEnabled}, Mode=OneTime}"
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.ToggleEnabledToolTip]}" />
+                <Separator />
+
                 <!-- Keyboard Hook -->
                 <MenuItem Name="KeyboardHookMenu"
                           IsCheckable="False"

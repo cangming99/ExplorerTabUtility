@@ -96,10 +96,9 @@ public partial class MainWindow : Window
 
     private void StartHooks()
     {
-        if (SettingsManager.IsWindowHookActive) _hookManager.StartWindowHook();
-        if (SettingsManager.IsMouseHookActive) _hookManager.StartMouseHook();
-        if (SettingsManager.IsKeyboardHookActive) _hookManager.StartKeyboardHook();
-        _hookManager.SetReuseTabs(SettingsManager.ReuseTabs);
+        // Master switch: starts the hooks that their own settings enable, or nothing at all
+        // when the utility is disabled (persisted).
+        _hookManager.ApplyEnabledState();
     }
 
     private void ToggleWindowVisibility()

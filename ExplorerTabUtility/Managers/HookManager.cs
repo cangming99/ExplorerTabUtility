@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,6 +20,7 @@ public sealed class HookManager
     public event Action? OnVisibilityToggled;
     public event Action? OnWindowHookToggled;
     public event Action? OnReuseTabsToggled;
+    public event Action? OnEnabledToggled;
     public event Action? OnShellInitialized;
 
     public HookManager(ProfileManager profileManager)
@@ -45,6 +46,29 @@ public sealed class HookManager
     public void StartWindowHook() => ChangeHookStatus(_windowHook, true);
     public void StopWindowHook() => ChangeHookStatus(_windowHook, false);
     public void SetReuseTabs(bool value) => _windowHook.SetReuseTabs(value);
+
+    /// <summary>
+    /// Master switch: when enabled starts every hook that its own setting turns on and applies
+    /// the reuse-tabs preference; when disabled stops everything and disables tab reuse, so the
+    /// utility has no effect until enabled again.
+    /// </summary>
+    public void ApplyEnabledState()
+    {
+        if (SettingsManager.IsEnabled)
+        {
+            if (SettingsManager.IsWindowHookActive) StartWindowHook();
+            if (SettingsManager.IsMouseHookActive) StartMouseHook();
+            if (SettingsManager.IsKeyboardHookActive) StartKeyboardHook();
+            SetReuseTabs(SettingsManager.ReuseTabs);
+        }
+        else
+        {
+            StopWindowHook();
+            StopMouseHook();
+            StopKeyboardHook();
+            SetReuseTabs(false);
+        }
+    }
 
     private async void OnHotKeyProfileTriggered(HotKeyEventArgs e)
     {
@@ -90,6 +114,10 @@ public sealed class HookManager
                 _syncContext.Post(_ => OnWindowHookToggled?.Invoke(), null);
                 break;
 
+            case HotKeyAction.ToggleEnabled:
+                _syncContext.Post(_ => OnEnabledToggled?.Invoke(), null);
+                break;
+
             case HotKeyAction.ToggleVisibility:
                 _syncContext.Post(_ => OnVisibilityToggled?.Invoke(), null);
                 break;
@@ -119,6 +147,7 @@ public sealed class HookManager
     }
     private void KeybindingStopped()
     {
+        if (!SettingsManager.IsEnabled) return;
         if (SettingsManager.IsMouseHookActive) StartMouseHook();
         if (SettingsManager.IsKeyboardHookActive) StartKeyboardHook();
     }

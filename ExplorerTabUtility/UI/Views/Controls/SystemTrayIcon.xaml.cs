@@ -37,6 +37,7 @@ public partial class SystemTrayIcon : UserControl, IDisposable
         _hookManager.OnShellInitialized += HookManager_OnShellInitialized;
         _hookManager.OnWindowHookToggled += HookManager_OnWindowHookToggled;
         _hookManager.OnReuseTabsToggled += HookManager_OnReuseTabsToggled;
+        _hookManager.OnEnabledToggled += HookManager_OnEnabledToggled;
 
         // Populate submenus for keyboard & mouse profiles
         UpdateMenuItems(autoCheckParent: false);
@@ -45,6 +46,9 @@ public partial class SystemTrayIcon : UserControl, IDisposable
     private void InitializeCommands()
     {
         ProfileItemCommand = new RelayCommand(OnProfileItemClick, s => s != null && ((MenuItem)s).IsEnabled);
+
+        ToggleEnabledItem.CommandParameter = ToggleEnabledItem;
+        ToggleEnabledItem.Command = new RelayCommand(_ => ToggleEnabled());
 
         KeyboardHookMenu.CommandParameter = KeyboardHookMenu;
         KeyboardHookMenu.Command = new RelayCommand(_ => ToggleKeyboardHookMenu(), s => s != null && ((MenuItem)s).HasItems);
@@ -109,6 +113,18 @@ public partial class SystemTrayIcon : UserControl, IDisposable
         ReuseTabs.Command.Execute(ReuseTabs.CommandParameter);
     }
 
+    private void HookManager_OnEnabledToggled()
+    {
+        ToggleEnabledItem.IsChecked = !ToggleEnabledItem.IsChecked;
+        ToggleEnabledItem.Command.Execute(ToggleEnabledItem.CommandParameter);
+    }
+
+    private void ToggleEnabled()
+    {
+        SettingsManager.IsEnabled = ToggleEnabledItem.IsChecked;
+        _hookManager.ApplyEnabledState();
+    }
+
     public void UpdateMenuItems(bool autoCheckParent = true)
     {
         PopulateHookProfiles(KeyboardHookMenu, _profileManager.GetKeyboardProfiles(), autoCheckParent);
@@ -158,6 +174,15 @@ public partial class SystemTrayIcon : UserControl, IDisposable
     private static void ToggleHookState(MenuItem parent, Action<bool> setSetting, Action startHook, Action stopHook)
     {
         setSetting(parent.IsChecked);
+
+        // The master switch is authoritative: a hook cannot be started while the utility is off.
+        if (parent.IsChecked && !SettingsManager.IsEnabled)
+        {
+            parent.IsChecked = false;
+            setSetting(false);
+            return;
+        }
+
         (parent.IsChecked ? startHook : stopHook)();
 
         if (parent.Name?.EndsWith("Menu") != true) return;

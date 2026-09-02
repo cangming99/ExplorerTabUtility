@@ -38,5 +38,7 @@ public enum HotKeyAction
     [Description("Snap the current window to the top.")]
     SnapUp,
     [Description("Snap the current window to the bottom.")]
-    SnapDown
+    SnapDown,
+    [Description("Enable or disable the entire application.")]
+    ToggleEnabled
 }

@@ -156,6 +156,17 @@ public static class SettingsManager
     /// culture code such as "en" or "zh-Hans". Persisted in the settings file and applied through
     /// <see cref="LocalizationManager"/>.
     /// </summary>
+    public static bool IsEnabled
+    {
+        get => Settings.IsEnabled;
+        set
+        {
+            Settings.IsEnabled = value;
+            SaveSettings();
+            NotifyStaticPropertyChanged();
+        }
+    }
+
     public static string Language
     {
         get => Settings.Language;
@@ -256,6 +267,7 @@ internal class AppSettings
     public bool AutoUpdate { get; set; }
     public string HotKeyProfiles { get; set; } = Constants.DefaultHotKeyProfiles;
     public string Language { get; set; } = LocalizationManager.AutoLanguage;
+    public bool IsEnabled { get; set; } = true;
     public bool SaveClosedWindows { get; set; }
     public bool RestorePreviousWindows { get; set; }
     public WindowRecord[]? ClosedWindows { get; set; }
