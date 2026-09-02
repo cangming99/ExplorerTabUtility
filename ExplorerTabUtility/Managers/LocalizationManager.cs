@@ -84,7 +84,7 @@ public static class LocalizationManager
         if (string.IsNullOrWhiteSpace(cultureCode))
             return EnglishLanguage;
 
-        var normalized = cultureCode.Trim().ToLowerInvariant();
+        var normalized = (cultureCode ?? string.Empty).Trim().ToLowerInvariant();
         return IsSimplifiedChinese(normalized) ? SimplifiedChineseLanguage : EnglishLanguage;
     }
 
