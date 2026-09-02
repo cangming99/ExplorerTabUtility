@@ -96,5 +96,18 @@
   "Status.WindowHook": "窗口钩子",
   "TabSearch.ClearHistoryConfirm": "确定要清空已关闭窗口的历史记录吗？",
   "TabSearch.ClearHistoryTitle": "确认清空历史记录",
-  "TabSearch.ClearHistoryToolTip": "清空已关闭窗口的历史记录"
+  "TabSearch.ClearHistoryToolTip": "清空已关闭窗口的历史记录",
+  "Tray.AddToStartup": "开机自启",
+  "Tray.AddToStartupToolTip": "Windows 启动时自动启动 Explorer Tab Utility",
+  "Tray.CheckForUpdates": "检查更新",
+  "Tray.CheckForUpdatesToolTip": "检查是否有 Explorer Tab Utility 的新版本",
+  "Tray.Exit": "退出",
+  "Tray.ExitToolTip": "关闭 Explorer Tab Utility 并停止所有钩子",
+  "Tray.KeyboardHookToolTip": "启用或禁用键盘快捷键",
+  "Tray.MouseHookToolTip": "启用或禁用鼠标快捷键",
+  "Tray.NotifyIconText": "Explorer Tab Utility：将新窗口强制为标签页。",
+  "Tray.ReuseTabsToolTip": "启用后导航到现有标签页，而不是打开重复标签页",
+  "Tray.Settings": "设置",
+  "Tray.SettingsToolTip": "打开设置窗口以配置应用",
+  "Tray.WindowHookToolTip": "切换将新资源管理器窗口自动重定向为标签页"
 }

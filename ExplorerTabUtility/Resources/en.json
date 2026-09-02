@@ -96,5 +96,18 @@
   "Status.WindowHook": "Window Hook",
   "TabSearch.ClearHistoryConfirm": "Are you sure you want to clear the closed windows history?",
   "TabSearch.ClearHistoryTitle": "Confirm Clear History",
-  "TabSearch.ClearHistoryToolTip": "Clear closed windows history"
+  "TabSearch.ClearHistoryToolTip": "Clear closed windows history",
+  "Tray.AddToStartup": "Add to startup",
+  "Tray.AddToStartupToolTip": "Automatically start Explorer Tab Utility when Windows starts",
+  "Tray.CheckForUpdates": "Check for updates",
+  "Tray.CheckForUpdatesToolTip": "Check if a newer version of Explorer Tab Utility is available",
+  "Tray.Exit": "Exit",
+  "Tray.ExitToolTip": "Close Explorer Tab Utility and stop all hooks",
+  "Tray.KeyboardHookToolTip": "Enable or disable keyboard shortcuts",
+  "Tray.MouseHookToolTip": "Enable or disable mouse shortcuts",
+  "Tray.NotifyIconText": "Explorer Tab Utility: Force new windows to tabs.",
+  "Tray.ReuseTabsToolTip": "When enabled, navigates to existing tabs instead of opening duplicate tabs",
+  "Tray.Settings": "Settings",
+  "Tray.SettingsToolTip": "Open the settings window to configure the application",
+  "Tray.WindowHookToolTip": "Toggle automatic redirection of new Explorer windows to tabs"
 }

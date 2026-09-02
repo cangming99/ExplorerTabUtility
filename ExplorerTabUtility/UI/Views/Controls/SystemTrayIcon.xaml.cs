@@ -26,7 +26,9 @@ public partial class SystemTrayIcon : UserControl, IDisposable
         InitializeCommands();
 
         TrayIcon.Icon = Helper.GetIcon();
-        TrayIcon.ToolTipText = Constants.NotifyIconText;
+        TrayIcon.ToolTipText = LocalizationManager.GetString("Tray.NotifyIconText");
+        LocalizationManager.LanguageChanged += (_, _) =>
+            TrayIcon.ToolTipText = LocalizationManager.GetString("Tray.NotifyIconText");
 
         _profileManager = profileManager;
         _hookManager = hookManager;
