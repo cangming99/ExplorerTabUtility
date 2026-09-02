@@ -368,3 +368,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Temporary git credentials - never tracked, never committed
+/Temp*cred*
