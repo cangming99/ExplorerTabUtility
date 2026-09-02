@@ -139,7 +139,7 @@
                 </Border>
 
                 <!-- Clear Button -->
-                <Button Grid.Column="1" ToolTip="{loc:Loc TabSearch.ClearHistoryToolTip}"
+                <Button Grid.Column="1" ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[TabSearch.ClearHistoryToolTip]}"
                         Margin="5,0,0,0"
                         Focusable="False"
                         Width="40" Height="Auto"

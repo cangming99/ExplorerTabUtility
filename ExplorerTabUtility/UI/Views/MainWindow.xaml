@@ -37,7 +37,7 @@
 
                     <!-- Menu Button -->
                     <ToggleButton x:Name="DrawerButton" Grid.Column="0" Style="{StaticResource ToggleButtonIconStyle}" Margin="6,0,0,0"
-                                  Content="&#x2630;" Focusable="False" ToolTip="{loc:Loc MainWindow.OpenMenuToolTip}" />
+                                  Content="&#x2630;" Focusable="False" ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.OpenMenuToolTip]}" />
 
                     <!-- Window Title -->
                     <TextBlock Grid.Column="1" Text="Explorer Tab Utility" VerticalAlignment="Center" Margin="8,0"
@@ -106,22 +106,22 @@
                                         <BeginStoryboard Storyboard="{StaticResource CloseDrawerStoryboard}"/>
                                     </EventTrigger>
                                 </ListBox.Triggers>
-                                <ListBoxItem ToolTip="{loc:Loc MainWindow.ShortcutsToolTip}">
+                                <ListBoxItem ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.ShortcutsToolTip]}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="&#x1F5F2;" VerticalAlignment="Center" />
-                                        <TextBlock Text="{loc:Loc MainWindow.Shortcuts}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.Shortcuts]}" VerticalAlignment="Center" Margin="8,0,0,0" />
                                     </StackPanel>
                                 </ListBoxItem>
-                                <ListBoxItem ToolTip="{loc:Loc MainWindow.PreferencesToolTip}">
+                                <ListBoxItem ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.PreferencesToolTip]}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="&#xE713;" VerticalAlignment="Center" />
-                                        <TextBlock Text="{loc:Loc MainWindow.Preferences}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.Preferences]}" VerticalAlignment="Center" Margin="8,0,0,0" />
                                     </StackPanel>
                                 </ListBoxItem>
-                                <ListBoxItem ToolTip="{loc:Loc MainWindow.AboutToolTip}">
+                                <ListBoxItem ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.AboutToolTip]}">
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                         <TextBlock Text="&#xE939;" VerticalAlignment="Center" />
-                                        <TextBlock Text="{loc:Loc MainWindow.About}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.About]}" VerticalAlignment="Center" Margin="8,0,0,0" />
                                     </StackPanel>
                                 </ListBoxItem>
                             </ListBox>
@@ -176,7 +176,7 @@
                                                   Color="{StaticResource ShadowColor}" />
                             </TabControl.Effect>
                             <!-- Shortcuts Tab -->
-                            <TabItem Header="{loc:Loc MainWindow.Shortcuts}" Visibility="Collapsed">
+                            <TabItem Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.Shortcuts]}" Visibility="Collapsed">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -187,20 +187,20 @@
                                     <DockPanel Grid.Row="0" Margin="16,8" LastChildFill="False">
                                         <!-- Action Buttons -->
                                         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                                            <Button x:Name="BtnNewProfile" Content="{loc:Loc MainWindow.New}" Style="{StaticResource FlatButtonStyle}"
-                                                    ToolTip="{loc:Loc MainWindow.NewToolTip}" />
-                                            <Button x:Name="BtnImport" Content="{loc:Loc MainWindow.Import}" Style="{StaticResource FlatButtonStyle}"
-                                                    ToolTip="{loc:Loc MainWindow.ImportToolTip}" />
-                                            <Button x:Name="BtnExport" Content="{loc:Loc MainWindow.Export}" Style="{StaticResource FlatButtonStyle}"
-                                                    ToolTip="{loc:Loc MainWindow.ExportToolTip}" />
-                                            <Button x:Name="BtnSave" Content="{loc:Loc MainWindow.Save}" Style="{StaticResource FlatButtonStyle}"
-                                                    ToolTip="{loc:Loc MainWindow.SaveToolTip}" />
+                                            <Button x:Name="BtnNewProfile" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.New]}" Style="{StaticResource FlatButtonStyle}"
+                                                    ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.NewToolTip]}" />
+                                            <Button x:Name="BtnImport" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.Import]}" Style="{StaticResource FlatButtonStyle}"
+                                                    ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.ImportToolTip]}" />
+                                            <Button x:Name="BtnExport" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.Export]}" Style="{StaticResource FlatButtonStyle}"
+                                                    ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.ExportToolTip]}" />
+                                            <Button x:Name="BtnSave" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.Save]}" Style="{StaticResource FlatButtonStyle}"
+                                                    ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.SaveToolTip]}" />
                                         </StackPanel>
 
                                         <!-- Save on Exit Toggle -->
                                         <CheckBox DockPanel.Dock="Right" x:Name="CbAutoSaveProfiles"
-                                                  Content="{loc:Loc MainWindow.AutoSave}" Style="{StaticResource CustomCheckBoxStyle}"
-                                                  ToolTip="{loc:Loc MainWindow.AutoSaveToolTip}" />
+                                                  Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.AutoSave]}" Style="{StaticResource CustomCheckBoxStyle}"
+                                                  ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.AutoSaveToolTip]}" />
                                     </DockPanel>
 
                                     <!-- Profiles Panel -->
@@ -213,30 +213,30 @@
                             </TabItem>
 
                             <!-- Preferences Tab -->
-                            <TabItem Header="{loc:Loc MainWindow.Preferences}" Visibility="Collapsed">
+                            <TabItem Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.Preferences]}" Visibility="Collapsed">
                                 <StackPanel Margin="16, 8">
-                                    <GroupBox Header="{loc:Loc Settings.ApplicationGroup}"
+                                    <GroupBox Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.ApplicationGroup]}"
                                               Style="{StaticResource CustomGroupBoxStyle}">
                                         <StackPanel Margin="8">
-                                            <CheckBox x:Name="CbAutoUpdate" Content="{loc:Loc Settings.AutoUpdate}"
+                                            <CheckBox x:Name="CbAutoUpdate" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.AutoUpdate]}"
                                                       Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="{loc:Loc Settings.AutoUpdateToolTip}" />
-                                            <CheckBox x:Name="CbThemeIssue" Content="{loc:Loc Settings.ThemeIssue}"
+                                                      ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.AutoUpdateToolTip]}" />
+                                            <CheckBox x:Name="CbThemeIssue" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.ThemeIssue]}"
                                                       Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="{loc:Loc Settings.ThemeIssueToolTip}" />
-                                            <CheckBox x:Name="CbSaveClosedHistory" Content="{loc:Loc Settings.SaveClosedHistory}"
+                                                      ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.ThemeIssueToolTip]}" />
+                                            <CheckBox x:Name="CbSaveClosedHistory" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.SaveClosedHistory]}"
                                                       Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="{loc:Loc Settings.SaveClosedHistoryToolTip}" />
-                                            <CheckBox x:Name="CbRestorePreviousWindows" Content="{loc:Loc Settings.RestorePreviousWindows}"
+                                                      ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.SaveClosedHistoryToolTip]}" />
+                                            <CheckBox x:Name="CbRestorePreviousWindows" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.RestorePreviousWindows]}"
                                                       Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="{loc:Loc Settings.RestorePreviousWindowsToolTip}" />
-                                            <CheckBox x:Name="CbHideTrayIcon" Content="{loc:Loc Settings.HideTrayIcon}"
+                                                      ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.RestorePreviousWindowsToolTip]}" />
+                                            <CheckBox x:Name="CbHideTrayIcon" Content="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.HideTrayIcon]}"
                                                       Style="{StaticResource CustomCheckBoxStyle}"
-                                                      ToolTip="{loc:Loc Settings.HideTrayIconToolTip}" />
+                                                      ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.HideTrayIconToolTip]}" />
                                         </StackPanel>
                                     </GroupBox>
 
-                                    <GroupBox Header="{loc:Loc Settings.LanguageGroup}"
+                                    <GroupBox Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Settings.LanguageGroup]}"
                                               Style="{StaticResource CustomGroupBoxStyle}"
                                               Margin="0,8,0,0">
                                         <StackPanel Margin="8">
@@ -252,7 +252,7 @@
                             </TabItem>
 
                             <!-- About Tab -->
-                            <TabItem Header="{loc:Loc MainWindow.About}" Visibility="Collapsed">
+                            <TabItem Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[MainWindow.About]}" Visibility="Collapsed">
                                 <local:AboutView />
                             </TabItem>
                         </TabControl>
@@ -285,7 +285,7 @@
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
-                            <TextBlock Text="{loc:Loc Status.WindowHook}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Status.WindowHook]}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
                         </StackPanel>
 
                         <!-- Reuse Tabs Status -->
@@ -309,7 +309,7 @@
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
-                            <TextBlock Text="{loc:Loc Status.ReuseTabs}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Status.ReuseTabs]}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
                         </StackPanel>
 
                         <!-- Keyboard Hook Status -->
@@ -333,7 +333,7 @@
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
-                            <TextBlock Text="{loc:Loc Status.KeyboardHook}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Status.KeyboardHook]}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
                         </StackPanel>
 
                         <!-- Mouse Hook Status -->
@@ -357,7 +357,7 @@
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
-                            <TextBlock Text="{loc:Loc Status.MouseHook}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Status.MouseHook]}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" />
                         </StackPanel>
                     </StackPanel>
             </Border>

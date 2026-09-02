@@ -17,7 +17,7 @@
                 <MenuItem Name="KeyboardHookMenu"
                           IsCheckable="False"
                           IsChecked="{Binding Source={x:Static managers:SettingsManager.IsKeyboardHookActive}, Mode=OneTime}"
-                          ToolTip="{loc:Loc Tray.KeyboardHookToolTip}">
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.KeyboardHookToolTip]}">
                     <MenuItem.Header>
                         <Grid>
                             <CheckBox Command="{Binding RelativeSource={RelativeSource AncestorType=MenuItem}, Path=Command}"
@@ -27,7 +27,7 @@
                                       Margin="-35,0,0,0"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch" />
-                            <TextBlock Text="{loc:Loc Status.KeyboardHook}" Background="Transparent" IsHitTestVisible="False" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Status.KeyboardHook]}" Background="Transparent" IsHitTestVisible="False" VerticalAlignment="Center" />
                         </Grid>
                     </MenuItem.Header>
                     <MenuItem.Icon>
@@ -40,7 +40,7 @@
                 <MenuItem Name="MouseHookMenu"
                           IsCheckable="False"
                           IsChecked="{Binding Source={x:Static managers:SettingsManager.IsMouseHookActive}, Mode=OneTime}"
-                          ToolTip="{loc:Loc Tray.MouseHookToolTip}">
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.MouseHookToolTip]}">
                     <MenuItem.Header>
                         <Grid>
                             <CheckBox Command="{Binding RelativeSource={RelativeSource AncestorType=MenuItem}, Path=Command}"
@@ -50,7 +50,7 @@
                                       Margin="-35,0,0,0"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch" />
-                            <TextBlock Text="{loc:Loc Status.MouseHook}" Background="Transparent" IsHitTestVisible="False" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Status.MouseHook]}" Background="Transparent" IsHitTestVisible="False" VerticalAlignment="Center" />
                         </Grid>
                     </MenuItem.Header>
                     <MenuItem.Icon>
@@ -60,24 +60,24 @@
                 </MenuItem>
 
                 <!-- Window Hook -->
-                <MenuItem Header="{loc:Loc Status.WindowHook}"
+                <MenuItem Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Status.WindowHook]}"
                           Name="WindowHook"
                           StaysOpenOnClick="True"
                           IsCheckable="True"
                           IsChecked="{Binding Source={x:Static managers:SettingsManager.IsWindowHookActive}, Mode=OneTime}"
-                          ToolTip="{loc:Loc Tray.WindowHookToolTip}">
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.WindowHookToolTip]}">
                     <MenuItem.Icon>
                         <TextBlock Text="&#xE8A7;" FontSize="14" />
                     </MenuItem.Icon>
                 </MenuItem>
 
                 <!-- Reuse Tabs -->
-                <MenuItem Header="{loc:Loc Status.ReuseTabs}"
+                <MenuItem Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Status.ReuseTabs]}"
                           Name="ReuseTabs"
                           StaysOpenOnClick="True"
                           IsCheckable="True"
                           IsChecked="{Binding Source={x:Static managers:SettingsManager.ReuseTabs}, Mode=OneTime}"
-                          ToolTip="{loc:Loc Tray.ReuseTabsToolTip}">
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.ReuseTabsToolTip]}">
                     <MenuItem.Icon>
                         <TextBlock Text="&#xE8EE;" FontSize="14" />
                     </MenuItem.Icon>
@@ -86,12 +86,12 @@
                 <Separator />
 
                 <!-- Add to startup -->
-                <MenuItem Header="{loc:Loc Tray.AddToStartup}"
+                <MenuItem Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.AddToStartup]}"
                           Name="AddToStartup"
                           StaysOpenOnClick="True"
                           IsCheckable="True"
                           IsChecked="{Binding Source={x:Static managers:RegistryManager.IsStartupEnabled}, Mode=OneTime}"
-                          ToolTip="{loc:Loc Tray.AddToStartupToolTip}">
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.AddToStartupToolTip]}">
                     <MenuItem.Icon>
                         <TextBlock Text="&#xE7F4;" FontSize="14" />
                     </MenuItem.Icon>
@@ -99,8 +99,8 @@
 
                 <!-- Check for updates -->
                 <MenuItem x:Name="CheckForUpdates"
-                          Header="{loc:Loc Tray.CheckForUpdates}"
-                          ToolTip="{loc:Loc Tray.CheckForUpdatesToolTip}">
+                          Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.CheckForUpdates]}"
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.CheckForUpdatesToolTip]}">
                     <MenuItem.Icon>
                         <TextBlock Text="&#xE896;" FontSize="14" />
                     </MenuItem.Icon>
@@ -108,8 +108,8 @@
 
                 <!-- Settings -->
                 <MenuItem x:Name="OpenSettings"
-                          Header="{loc:Loc Tray.Settings}"
-                          ToolTip="{loc:Loc Tray.SettingsToolTip}">
+                          Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.Settings]}"
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.SettingsToolTip]}">
                     <MenuItem.Icon>
                         <TextBlock Text="&#xE713;" FontSize="14" />
                     </MenuItem.Icon>
@@ -119,8 +119,8 @@
 
                 <!-- Exit -->
                 <MenuItem x:Name="ExitApplication"
-                          Header="{loc:Loc Tray.Exit}"
-                          ToolTip="{loc:Loc Tray.ExitToolTip}">
+                          Header="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.Exit]}"
+                          ToolTip="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[Tray.ExitToolTip]}">
                     <MenuItem.Icon>
                         <TextBlock Text="&#xE7E8;" FontSize="14" Foreground="{StaticResource DangerBrush}" />
                     </MenuItem.Icon>

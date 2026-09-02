@@ -406,7 +406,7 @@
                                        VerticalAlignment="Bottom" />
                         </StackPanel>
 
-                        <TextBlock Text="{loc:Loc About.Tagline}"
+                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.Tagline]}"
                                    Foreground="{StaticResource TextSecondaryBrush}"
                                    HorizontalAlignment="Center"
                                    Margin="0,0,0,4" />
@@ -451,7 +451,7 @@
                                         <ScaleTransform ScaleX="1" ScaleY="1" />
                                     </TextBlock.RenderTransform>
                                 </TextBlock>
-                                <TextBlock Text="{loc:Loc About.StarOnGitHub}"
+                                <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.StarOnGitHub]}"
                                            FontWeight="SemiBold"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -469,10 +469,10 @@
 
                     <!-- Left Column: Support Options -->
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="{loc:Loc About.SupportTitle}"
+                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.SupportTitle]}"
                                    Style="{StaticResource SectionTitleStyle}" />
 
-                        <TextBlock Text="{loc:Loc About.SupportDescription}"
+                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.SupportDescription]}"
                                    TextWrapping="Wrap"
                                    Foreground="{StaticResource TextSecondaryBrush}"
                                    Height="42"
@@ -485,7 +485,7 @@
                                 <TextBlock Text="💖"
                                            Style="{StaticResource ColorfulEmojiStyle}"
                                            Foreground="#EA4AAA" />
-                                <TextBlock Text="{loc:Loc About.GitHubSponsors}"
+                                <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.GitHubSponsors]}"
                                            FontSize="16"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -498,7 +498,7 @@
                                 <TextBlock Text="🏆"
                                            Style="{StaticResource ColorfulEmojiStyle}"
                                            Foreground="#F96854" />
-                                <TextBlock Text="{loc:Loc About.Patreon}"
+                                <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.Patreon]}"
                                            FontSize="16"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -511,7 +511,7 @@
                                 <TextBlock Text="☕"
                                            Style="{StaticResource ColorfulEmojiStyle}"
                                            Foreground="#FFDD00" />
-                                <TextBlock Text="{loc:Loc About.BuyMeACoffee}"
+                                <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.BuyMeACoffee]}"
                                            FontSize="16"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -524,7 +524,7 @@
                                 <TextBlock Text="💸"
                                            Style="{StaticResource ColorfulEmojiStyle}"
                                            Foreground="#00457C" />
-                                <TextBlock Text="{loc:Loc About.PayPal}"
+                                <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.PayPal]}"
                                            FontSize="16"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -533,7 +533,7 @@
                         <Border Margin="0,24,0,0" CornerRadius="8"
                                 Style="{StaticResource ProfileCardStyle}">
                             <StackPanel>
-                                <TextBlock Text="{loc:Loc About.Developer}"
+                                <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.Developer]}"
                                            FontWeight="SemiBold"
                                            FontSize="18"
                                            Foreground="{StaticResource TextPrimaryBrush}"
@@ -592,10 +592,10 @@
 
                     <!-- Right Column: Supporters -->
                     <StackPanel Grid.Column="2">
-                        <TextBlock Text="{loc:Loc About.SupportersTitle}"
+                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.SupportersTitle]}"
                                    Style="{StaticResource SectionTitleStyle}" />
 
-                        <TextBlock Text="{loc:Loc About.SupportersDescription}"
+                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.SupportersDescription]}"
                                    TextWrapping="Wrap"
                                    Foreground="{StaticResource TextSecondaryBrush}"
                                    Height="42"
@@ -632,13 +632,13 @@
                                                                                               Opacity="0.5" />
                                                                         </TextBlock.Effect>
                                                                     </TextBlock>
-                                                                    <TextBlock Text="{loc:Loc About.NoSupportersTitle}"
+                                                                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.NoSupportersTitle]}"
                                                                                TextWrapping="Wrap"
                                                                                FontSize="16"
                                                                                FontWeight="Medium"
                                                                                Foreground="{StaticResource TextSecondaryBrush}"
                                                                                HorizontalAlignment="Center" />
-                                                                    <TextBlock Text="{loc:Loc About.NoSupportersHint}"
+                                                                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.NoSupportersHint]}"
                                                                                TextWrapping="Wrap"
                                                                                Margin="0,8,0,0"
                                                                                Foreground="{StaticResource TextSecondaryBrush}"
