@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Collections.Generic;
 using System.Drawing;
@@ -77,15 +77,19 @@ public sealed class Mouse : IHook
 
     private bool IsDoubleClick(Key currentKey)
     {
-        var isDoubleClick = false;
-        
         var now = Environment.TickCount;
         if (now - _lastClickTime < 500 && _lastClickKey == currentKey)
-            isDoubleClick = true;
-        
+        {
+            // Consume this match: a fast triple-click (or OS bounce) must not re-fire -
+            // the next same-key click starts a fresh double-click candidate.
+            _lastClickTime = 0;
+            _lastClickKey = Key.None;
+            return true;
+        }
+
         _lastClickTime = now;
         _lastClickKey = currentKey;
-        return isDoubleClick;
+        return false;
     }
 
     public void Dispose()
