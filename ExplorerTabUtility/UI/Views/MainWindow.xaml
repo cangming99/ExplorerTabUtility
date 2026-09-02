@@ -107,19 +107,22 @@
                                     </EventTrigger>
                                 </ListBox.Triggers>
                                 <ListBoxItem ToolTip="{loc:Loc MainWindow.ShortcutsToolTip}">
-                                    <TextBlock VerticalAlignment="Center">
-                                        <Run Text="&#x1F5F2;" /><Run Text="  " /><Run Text="{loc:Loc MainWindow.Shortcuts}" />
-                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="&#x1F5F2;" VerticalAlignment="Center" />
+                                        <TextBlock Text="{loc:Loc MainWindow.Shortcuts}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                                    </StackPanel>
                                 </ListBoxItem>
                                 <ListBoxItem ToolTip="{loc:Loc MainWindow.PreferencesToolTip}">
-                                    <TextBlock VerticalAlignment="Center">
-                                        <Run Text="&#xE713;" /><Run Text="  " /><Run Text="{loc:Loc MainWindow.Preferences}" />
-                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="&#xE713;" VerticalAlignment="Center" />
+                                        <TextBlock Text="{loc:Loc MainWindow.Preferences}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                                    </StackPanel>
                                 </ListBoxItem>
                                 <ListBoxItem ToolTip="{loc:Loc MainWindow.AboutToolTip}">
-                                    <TextBlock VerticalAlignment="Center">
-                                        <Run Text="&#xE939;" /><Run Text="  " /><Run Text="{loc:Loc MainWindow.About}" />
-                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="&#xE939;" VerticalAlignment="Center" />
+                                        <TextBlock Text="{loc:Loc MainWindow.About}" VerticalAlignment="Center" Margin="8,0,0,0" />
+                                    </StackPanel>
                                 </ListBoxItem>
                             </ListBox>
                         </DockPanel>
