@@ -478,6 +478,11 @@
                                    Height="42"
                                    Margin="0,0,0,6" />
 
+                        <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.OriginalAuthorNote]}"
+                                   TextWrapping="Wrap"
+                                   Foreground="{StaticResource AccentBrush}"
+                                   Margin="0,0,0,10" />
+
                         <Button x:Name="BtnGitHubSponsors"
                                 Style="{StaticResource SupportButtonStyle}"
                                 Click="BtnGitHubSponsors_Click">
@@ -582,6 +587,64 @@
                                                        Cursor="Hand"
                                                        TextDecorations="Underline"
                                                        MouseLeftButtonUp="OpenDeveloperPage"
+                                                       Foreground="{StaticResource AccentBrush}" />
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Fork Maintainer (二次开发维护者) -->
+                        <Border Margin="0,16,0,0" CornerRadius="8"
+                                Style="{StaticResource ProfileCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.ForkMaintainer]}"
+                                           FontWeight="SemiBold"
+                                           FontSize="18"
+                                           Foreground="{StaticResource TextPrimaryBrush}"
+                                           Margin="0,0,0,8" />
+
+                                <TextBlock Text="{Binding Source={x:Static loc:LocalizationBindingSource.Instance}, Path=[About.ForkMaintainerNote]}"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,12"
+                                           Foreground="{StaticResource TextSecondaryBrush}" />
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Fork Maintainer Avatar -->
+                                    <Border Margin="0,0,16,0"
+                                            Width="48"
+                                            Height="48"
+                                            CornerRadius="24"
+                                            BorderBrush="{StaticResource PrimaryLightBrush}"
+                                            BorderThickness="2"
+                                            HorizontalAlignment="Center"
+                                            Cursor="Hand"
+                                            MouseLeftButtonUp="OpenForkMaintainerPage">
+                                        <TextBlock Text="🔀"
+                                                   FontFamily="Segoe UI Emoji"
+                                                   FontSize="20"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center" />
+                                    </Border>
+
+                                    <!-- Fork Maintainer Info -->
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="cangming99"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="16"
+                                                   Cursor="Hand"
+                                                   MouseLeftButtonUp="OpenForkMaintainerPage"
+                                                   Foreground="{StaticResource TextPrimaryBrush}" />
+                                        <TextBlock Margin="0,4,0,0">
+                                            <TextBlock Text="github.com/cangming99"
+                                                       Cursor="Hand"
+                                                       TextDecorations="Underline"
+                                                       MouseLeftButtonUp="OpenForkMaintainerPage"
                                                        Foreground="{StaticResource AccentBrush}" />
                                         </TextBlock>
                                     </StackPanel>

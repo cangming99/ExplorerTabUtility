@@ -3,8 +3,12 @@
 > [!TIP]
 > Force new File Explorer windows to open as tabs in Windows 11, making your workflow cleaner and more organized!
 
+> [!NOTE]
+> **Derivative fork** — This repository is a fork of [w4po/ExplorerTabUtility](https://github.com/w4po/ExplorerTabUtility), maintained by **cangming99** with additional fixes and Simplified Chinese localization. The support/donation links below belong to the original author.
+> **二次开发分支** —— 本仓库是 [w4po/ExplorerTabUtility](https://github.com/w4po/ExplorerTabUtility) 的二次开发分支，由 **cangming99** 维护，额外包含多项修复与简体中文本地化。文末赞助/捐赠入口归属原作者。
+
 <div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/ExplorerTabUtilityLogo.gif" alt="Explorer Tab Utility Logo">
+  <img src="https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/ExplorerTabUtilityLogo.gif" alt="Explorer Tab Utility Logo">
   
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Windows 11](https://img.shields.io/badge/Windows%2011-22H2+-blue.svg)](https://www.microsoft.com/windows/windows-11)
@@ -18,7 +22,7 @@
 ## 🤔 Why Explorer Tab Utility?
 
 <div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/TheWhy.png" alt="Why use Explorer Tab Utility">
+  <img src="https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/TheWhy.png" alt="Why use Explorer Tab Utility">
 </div>
 
 Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab Utility automatically converts new windows into tabs, providing a cleaner and more organized file management experience.
@@ -36,7 +40,7 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
 - Handles opening multiple tabs at once
 
 **See it in action:**
-![Window to tab conversion](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/WindowToTab.gif)
+![Window to tab conversion](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/WindowToTab.gif)
 </details>
 
 <details>
@@ -47,7 +51,7 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
 - Preserves the current location and selected items
 
 **See it in action:**
-![Duplicate current tab](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/DuplicateTab.gif)
+![Duplicate current tab](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/DuplicateTab.gif)
 </details>
 
 <details>
@@ -59,7 +63,7 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
 - History is saved across application restarts (enable "Save closed history" in settings)
 
 **See it in action:**
-![Reopen closed tabs](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/ReopenClosedTab.gif)
+![Reopen closed tabs](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/ReopenClosedTab.gif)
 </details>
 
 <details>
@@ -69,7 +73,7 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
 - Configurable via "Restore previous windows" setting
 - Confirmation dialog allows you to choose whether to restore windows on first launch
 
-![Restore Previous Windows](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/RestorePrevious.png)
+![Restore Previous Windows](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/RestorePrevious.png)
 </details>
 
 <details>
@@ -85,7 +89,7 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
 - Customize delays to match your system's performance
 
 **See it in action:**
-![Detach & Snap](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/DetachSnap.gif)
+![Detach & Snap](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/DetachSnap.gif)
 </details>
 
 <details>
@@ -97,7 +101,7 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
 - Perfect for quick navigation between directories
 
 **See it in action:**
-![Navigate back/up](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/NavigateBack.gif)
+![Navigate back/up](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/NavigateBack.gif)
 </details>
 
 <details>
@@ -110,12 +114,12 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
   - Environment variables: `%USERPROFILE%\Downloads`
   - Windows CLSID paths: `{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}` (Special Folders)
   - Programs and files: `C:\file.txt`
-  - URLs: `https://github.com/w4po/ExplorerTabUtility` (opens in default browser)
+  - URLs: `https://github.com/cangming99/ExplorerTabUtility` (opens in default browser)
 - Perfect for frequently accessed locations
 - Instant access to system folders using CLSIDs
 
 **See it in action:**
-![Custom location](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/CustomLocation.gif)
+![Custom location](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/CustomLocation.gif)
 </details>
 
 <details>
@@ -130,7 +134,7 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
   - CTRL key: Duplicate the tab even if it already exists
 - Clear recently closed windows history with a single click
 
-![Tab Search](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/TabSearch.gif)
+![Tab Search](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/TabSearch.gif)
 </details>
 
 <details>
@@ -152,17 +156,18 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
 
 ## 🚀 Getting Started
 
-1. Download the latest version from the [Releases](https://github.com/w4po/ExplorerTabUtility/releases) page or install it via `winget` or `choco`:
+1. Download the latest version from the [Releases](https://github.com/cangming99/ExplorerTabUtility/releases) page or install it via `winget` or `choco`:
     ```powershell
     winget install w4po.ExplorerTabUtility --interactive
     ```
     ```powershell
     choco install explorertabutility --version 2.5.0 --params "/interactive"
     ```
+    > The `winget`/`choco` packages above are published by the **original author** and install the upstream build. To install this fork, use the Releases page.
 2. Run the application
 3. Look for the tray icon and you're ready to go!
 
-    ![Menu](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/Menu.png)
+    ![Menu](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/Menu.png)
 
 ## ⚙️ Configuration
 
@@ -196,7 +201,7 @@ Say goodbye to cluttered desktops with multiple Explorer windows! Explorer Tab U
 - **Hide tray icon**: Hide the system tray icon for a cleaner taskbar experience.
   * You must first configure a hotkey with the `ToggleVisibility` action before enabling this option
 
-![Preferences](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/Preferences.png)
+![Preferences](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/Preferences.png)
 </details>
 
 <details>
@@ -237,7 +242,7 @@ Each profile contains the following settings:
    - Key Handling: Toggle whether hotkeys are passed to other applications
    - Profile Deletion: Remove unwanted profiles
 
-![Form](https://cdn.jsdelivr.net/gh/w4po/ExplorerTabUtility@master/Assets/Form.png)
+![Form](https://cdn.jsdelivr.net/gh/cangming99/ExplorerTabUtility@master/Assets/Form.png)
 
 > [!TIP]
 > Use the "Handled" toggle to prevent or allow hotkey propagation to other applications that might be listening for the same key combination.
@@ -371,9 +376,9 @@ Add-MpPreference -ExclusionPath "PATH_TO_UTILITY_FOLDER"
 
 Despite these Windows limitations, the utility implements the best possible solutions using available Windows APIs and COM interfaces.
 
-## 💝 Support the Project
+## 💝 Support the Original Author
 
-If you find Explorer Tab Utility helpful, consider supporting its development:
+Explorer Tab Utility was originally developed by **w4po**. If you find this utility helpful, please consider supporting **the original author** through the donation channels below:
 
 <p align="center">
   <a href="https://github.com/sponsors/w4po">
@@ -437,3 +442,5 @@ Special thanks to the maintainers of these packages for their excellent work!
   </tr>
  </tbody>
 </table>
+
+> Code signing above applies to the **upstream** releases. Builds from this fork are **unsigned** — expect a SmartScreen "Unknown publisher" warning when downloading the installer from this fork's Releases.

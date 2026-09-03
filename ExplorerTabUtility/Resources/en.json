@@ -1,9 +1,12 @@
 {
   "About.BuyMeACoffee": "Buy Me A Coffee",
   "About.Developer": "Developer",
+  "About.ForkMaintainer": "Fork Maintainer",
+  "About.ForkMaintainerNote": "Derivative fork of w4po/ExplorerTabUtility, maintained by cangming99.",
   "About.GitHubSponsors": "GitHub Sponsors",
   "About.NoSupportersHint": "Your support helps keep this project alive",
   "About.NoSupportersTitle": "Be the first to support this project!",
+  "About.OriginalAuthorNote": "The support links below belong to the original author (w4po).",
   "About.Patreon": "Patreon",
   "About.PayPal": "PayPal",
   "About.StarOnGitHub": "Star on GitHub",

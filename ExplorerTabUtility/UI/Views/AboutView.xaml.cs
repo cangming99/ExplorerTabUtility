@@ -60,7 +60,8 @@ public partial class AboutView : UserControl
     private void BtnBuyMeACoffee_Click(object _, RoutedEventArgs __) => OpenUrl("https://www.buymeacoffee.com/w4po");
     private void BtnPayPal_Click(object _, RoutedEventArgs __) => OpenUrl("https://paypal.me/w4po77");
     private void OpenDeveloperPage(object _, RoutedEventArgs __) => OpenUrl("https://github.com/w4po");
-    private void OpenProjectPage(object _, RoutedEventArgs __) => OpenUrl("https://github.com/w4po/ExplorerTabUtility");
+    private void OpenForkMaintainerPage(object _, RoutedEventArgs __) => OpenUrl("https://github.com/cangming99");
+    private void OpenProjectPage(object _, RoutedEventArgs __) => OpenUrl("https://github.com/cangming99/ExplorerTabUtility");
 
     private void OpenSupportPage(object sender, RoutedEventArgs _)
     {

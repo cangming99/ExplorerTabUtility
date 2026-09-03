@@ -1,9 +1,12 @@
 {
   "About.BuyMeACoffee": "Buy Me A Coffee",
   "About.Developer": "开发者",
+  "About.ForkMaintainer": "二次开发维护者",
+  "About.ForkMaintainerNote": "本软件是 w4po/ExplorerTabUtility 的二次开发分支，由 cangming99 维护。",
   "About.GitHubSponsors": "GitHub Sponsors",
   "About.NoSupportersHint": "你的支持能让这个项目保持活力",
   "About.NoSupportersTitle": "成为第一个支持本项目的人！",
+  "About.OriginalAuthorNote": "以下赞助入口属于原作者（w4po）。",
   "About.Patreon": "Patreon",
   "About.PayPal": "PayPal",
   "About.StarOnGitHub": "在 GitHub 上点赞",
