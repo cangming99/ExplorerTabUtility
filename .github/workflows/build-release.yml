@@ -1,23 +1,30 @@
-name: Build, Sign and Release
+# Build, Sign and Create Tag
+#
+# Manual-only workflow: run it from Actions -> "Build, Sign and Create Tag" -> Run workflow.
+# It builds all framework/arch zips (+ installer), optionally signs them (only when the
+# SIGNPATH_API_TOKEN secret is configured), and creates + pushes the version tag.
+# It does NOT create a GitHub Release: turn the tag into a release yourself afterwards
+# (Releases -> Draft a new release -> choose tag -> attach artifacts from this run page).
+#
+# Removing the `push: tags` trigger means pushing a v* tag no longer auto-fires anything.
+
+name: Build, Sign and Create Tag
 
 on:
-  push:
-    tags:
-      - 'v*' # Triggers on tags like v1.3.0
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version string to use (e.g., v1.0.0)'
+        description: 'Version string to use (e.g., v2.5.0 - will be created as a tag)'
         required: true
         type: string
-        default: 'v2.4.0-test'
+        default: 'v2.5.0'
 
 env:
   PROJECT_NAME: ExplorerTabUtility
   SIGNPATH_ORG_ID: c35b3bd9-3451-4e24-b4e0-332e901290bf
   SIGNPATH_PROJECT_SLUG: ExplorerTabUtility
   SIGNPATH_POLICY_SLUG: release-signing
-  VERSION: ${{ github.event_name == 'push' && github.ref_name || inputs.version }}
+  VERSION: ${{ inputs.version }}
 
 jobs:
   build:
@@ -53,20 +60,20 @@ jobs:
         run: |
           $frameworkName = if ("${{ matrix.framework }}" -eq "net9.0-windows") { "Net9.0_FrameworkDependent" } else { "NetFW4.8.1" }
           $zipName = "${{ env.PROJECT_NAME }}_${{ env.VERSION }}_${{ matrix.arch }}_${frameworkName}.zip"
-          
+
           # Create a temporary directory with PROJECT_NAME as the root
           $tempDir = "temp-$(New-Guid)"
           New-Item -Path "$tempDir/${{ env.PROJECT_NAME }}" -ItemType Directory -Force | Out-Null
-          
+
           # Copy published files into PROJECT_NAME subdirectory
           Copy-Item -Path "publish/${{ matrix.framework }}/${{ matrix.arch }}/*" -Destination "$tempDir/${{ env.PROJECT_NAME }}" -Recurse
-          
+
           # Compress the entire temp directory (includes PROJECT_NAME folder)
           Compress-Archive -Path "$tempDir/*" -DestinationPath $zipName
-          
+
           # Clean up temporary directory
           Remove-Item -Path $tempDir -Recurse -Force
-          
+
           echo "zipName=$zipName" >> $env:GITHUB_OUTPUT
         shell: pwsh
 
@@ -91,9 +98,14 @@ jobs:
         shell: pwsh
         run: dotnet test ExplorerTabUtility.Tests/ExplorerTabUtility.Tests.csproj -c Release
 
+  # Signing steps only run when SIGNPATH_API_TOKEN is configured; a fork without
+  # the secret simply skips signing and continues with unsigned artifacts.
+  # (Secrets cannot be referenced in `if:` directly - they are mapped to a job env var first.)
   sign-artifacts:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
@@ -110,6 +122,7 @@ jobs:
 
       - name: Submit bundle for signing
         id: submit-signing
+        if: env.SIGNPATH_API_TOKEN != ''
         uses: signpath/github-action-submit-signing-request@v1.1
         with:
           api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
@@ -124,6 +137,7 @@ jobs:
             version: "${{ env.VERSION }}"
 
       - name: Upload signed artifacts
+        if: env.SIGNPATH_API_TOKEN != ''
         uses: actions/upload-artifact@v4
         with:
           name: signed-artifacts
@@ -132,14 +146,24 @@ jobs:
   build-installer:
     needs: sign-artifacts
     runs-on: windows-latest
+    env:
+      SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Download Signed Artifacts
+      - name: Download signed zips
+        if: env.SIGNPATH_API_TOKEN != ''
         uses: actions/download-artifact@v4
         with:
           name: signed-artifacts
+          path: artifacts
+
+      - name: Download unsigned zips
+        if: env.SIGNPATH_API_TOKEN == ''
+        uses: actions/download-artifact@v4
+        with:
+          name: unsigned-bundle
           path: artifacts
 
       - name: Install Inno Setup
@@ -164,6 +188,7 @@ jobs:
 
       - name: Submit installer for signing
         id: submit-installer-signing
+        if: env.SIGNPATH_API_TOKEN != ''
         uses: signpath/github-action-submit-signing-request@v1.1
         with:
           api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
@@ -178,75 +203,34 @@ jobs:
             version: "${{ env.VERSION }}"
 
       - name: Upload signed installer
+        if: env.SIGNPATH_API_TOKEN != ''
         uses: actions/upload-artifact@v4
         with:
           name: signed-installer
           path: ./signed-installer/*.exe
 
-  create-release:
+  # Only creates + pushes the tag - no GitHub Release is created.
+  create-tag:
     needs: [ sign-artifacts, build-installer ]
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
-      contents: write       # Required to create releases
-      pull-requests: read   # Required to read PRs for changelog generation
+      contents: write       # Required to push the tag
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Download Signed Artifacts
-        uses: actions/download-artifact@v4
         with:
-          name: signed-artifacts
-          path: release-artifacts
+          fetch-depth: 0
 
-      - name: Download Signed Installer
-        uses: actions/download-artifact@v4
-        with:
-          name: signed-installer
-          path: release-artifacts
-
-      - name: Generate Changelog
-        id: generate_changelog
-        uses: mikepenz/release-changelog-builder-action@v5
-        with:
-          mode: "COMMIT"
-          configurationJson: |
-            {
-              "template": "#{{CHANGELOG}}",
-              "categories": [
-                {
-                    "title": "## 🚀 Feature",
-                    "labels": ["feat", "feature"]
-                },
-                {
-                    "title": "## 🐛 Fix",
-                    "labels": ["fix", "bug"]
-                },
-                {
-                    "title": "## 📜 Other",
-                    "labels": []
-                }
-              ],
-              "label_extractor": [
-                {
-                  "pattern": "^(build|chore|ci|docs|feat|fix|bug|perf|refactor|revert|style|test){1}(\\([\\w\\-\\.]+\\))?(!)?: ([\\w ])+([\\s\\S]*)",
-                  "target": "$1"
-                }
-              ]
-            }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ env.VERSION }}
-          name: ${{ env.PROJECT_NAME }} ${{ env.VERSION }}
-          draft: true
-          body: |
-            ${{ steps.generate_changelog.outputs.changelog }}
-            
-            **Note:** If you are not sure, then you probably want: [${{ env.PROJECT_NAME }}_${{ env.VERSION }}_Setup.exe](https://github.com/${{ github.repository }}/releases/download/${{ env.VERSION }}/${{ env.PROJECT_NAME }}_${{ env.VERSION }}_Setup.exe)
-          files: |
-            release-artifacts/*.zip
-            release-artifacts/*.exe
+      - name: Create and push tag
+        shell: pwsh
+        run: |
+          $tag = "${{ env.VERSION }}"
+          git fetch --tags origin
+          if (git tag -l "$tag") {
+            Write-Host "Tag '$tag' already exists - nothing to create. Artifacts are on this run page."
+          } else {
+            git tag "$tag"
+            git push origin "$tag"
+            Write-Host "Created and pushed tag '$tag'."
+          }
+          Write-Host "Next step: go to Releases -> Draft a new release, choose tag '$tag', and attach the artifacts from this run."
