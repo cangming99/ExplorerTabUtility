@@ -1,13 +1,13 @@
-# Build and Create Tag
+# Build, Tag and Draft Release
 #
-# Manual-only workflow: run it from Actions -> "Build and Create Tag" -> Run workflow.
-# It builds all framework/arch zips (+ installer) and creates + pushes the version tag.
-# It does NOT create a GitHub Release: turn the tag into a release yourself afterwards
-# (Releases -> Draft a new release -> choose tag -> attach artifacts from this run page).
+# Manual-only workflow: run it from Actions -> "Build, Tag and Draft Release" -> Run workflow.
+# It builds all framework/arch zips (+ installer), creates + pushes the version tag, and
+# opens a DRAFT release on that tag with every artifact pre-attached. Publish it from the
+# Releases page afterwards (a draft is invisible to the in-app auto-updater).
 #
 # Tests are intentionally NOT run here - they are covered by ci.yml (PR + manual runs).
 
-name: Build and Create Tag
+name: Build, Tag and Draft Release
 
 on:
   workflow_dispatch:
@@ -111,12 +111,13 @@ jobs:
           name: ${{ env.PROJECT_NAME }}_${{ env.VERSION }}_Setup
           path: artifacts/*.exe
 
-  # Only creates + pushes the tag - no GitHub Release is created.
-  create-tag:
+  # Creates + pushes the tag, then opens a DRAFT release on that tag with all
+  # artifacts pre-attached, so publishing the release needs no manual uploads.
+  create-release:
     needs: build-installer
     runs-on: ubuntu-latest
     permissions:
-      contents: write       # Required to push the tag
+      contents: write       # Required to push the tag and create the release
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -129,10 +130,24 @@ jobs:
           $tag = "${{ env.VERSION }}"
           git fetch --tags origin
           if (git tag -l "$tag") {
-            Write-Host "Tag '$tag' already exists - nothing to create. Artifacts are on this run page."
+            Write-Host "Tag '$tag' already exists - nothing to create."
           } else {
             git tag "$tag"
             git push origin "$tag"
             Write-Host "Created and pushed tag '$tag'."
           }
-          Write-Host "Next step: go to Releases -> Draft a new release, choose tag '$tag', and attach the artifacts from this run."
+
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-artifacts
+          merge-multiple: true
+
+      - name: Create draft release with assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.VERSION }}
+          name: ${{ env.PROJECT_NAME }} ${{ env.VERSION }}
+          draft: true
+          generate_release_notes: true
+          files: release-artifacts/*
